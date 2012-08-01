@@ -61,23 +61,42 @@ public class AnimatedSprite {
 		return Textures.get().getName(texture);
 	}
 	
-	public void render(int frameX, int frameY) {
+	public void render(int frameX, int frameY, String dir) {
 		float tx = (frameX * width) / getWidth();
 		float ty = (frameY * height) / getHeight();
 		float tw = width/getWidth();
 		float th = height/getHeight();
+		float tx2 = tx+tw;
+		float ty2 = ty+th;
+		if(dir == "right") {
 		glEnable(GL_TEXTURE_2D);
 		texture.bind();
-		glBegin(GL_QUADS);
-			glTexCoord2f(tx, ty);
-			glVertex2f(pos.x,pos.y);
-			glTexCoord2f(tx+tw, ty);
-			glVertex2f(pos.x+width,pos.y);
-			glTexCoord2f(tx+tw,ty+th);
-			glVertex2f(pos.x+width,pos.y+height);
-			glTexCoord2f(tx,ty+th);
-			glVertex2f(pos.x,pos.y+height);
-		glEnd();
+			glBegin(GL_QUADS);
+				glTexCoord2f(tx, ty);
+				glVertex2f(pos.x,pos.y);
+				glTexCoord2f(tx2, ty);
+				glVertex2f(pos.x+width,pos.y);
+				glTexCoord2f(tx2,ty2);
+				glVertex2f(pos.x+width,pos.y+height);
+				glTexCoord2f(tx,ty2);
+				glVertex2f(pos.x,pos.y+height);
+			glEnd();
+		}
+		if(dir == "left") {
+			glEnable(GL_TEXTURE_2D);
+			texture.bind();
+			glBegin(GL_QUADS);
+				glTexCoord2f(tx2, ty);
+				glVertex2f(pos.x,pos.y);
+				glTexCoord2f(tx, ty);
+				glVertex2f(pos.x+width,pos.y);
+				glTexCoord2f(tx,ty2);
+				glVertex2f(pos.x+width,pos.y+height);
+				glTexCoord2f(tx2,ty2);
+				glVertex2f(pos.x,pos.y+height);
+			glEnd();
+		}
+		
 		
 		glDisable(GL_TEXTURE_2D);
 	}

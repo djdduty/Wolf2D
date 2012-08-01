@@ -8,7 +8,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Game {
-	private StateManager manager;
+	private ScreenManager manager;
 	
 	static {
 		if(System.getProperty("os.name").startsWith("Win")) {
@@ -30,8 +30,8 @@ public class Game {
 		}
 	}
 	
-	public Game(State initialState) {
-		manager = new StateManager(initialState);
+	public Game(Screen initialScreen) {
+		manager = new ScreenManager(initialScreen);
 	}
 	
 	public void setTitle(String title) {
@@ -50,7 +50,7 @@ public class Game {
 		return Display.getHeight();
 	}
 	
-	public StateManager getStateManager() {
+	public ScreenManager getScreenManager() {
 		return manager;
 	}
 	

@@ -7,20 +7,20 @@ import engine.JWolf2D.logic.GameObject;
 import engine.JWolf2D.logic.PlayerExample;
 import engine.JWolf2D.resource.Textures;
 
-import engine.JWolf2D.core.State;
-import engine.JWolf2D.core.StateManager;
+import engine.JWolf2D.core.Screen;
+import engine.JWolf2D.core.ScreenManager;
 
-public class GameState implements State{
-	private StateManager manager;
+public class GameScreen implements Screen{
+	private ScreenManager manager;
 	private PlayerExample test;
 	private int timer=0, fx;
 	private Layer layer;
 	
-	public GameState() {
+	public GameScreen() {
 	
 	}
 	
-	public void init(StateManager manager) {
+	public void init(ScreenManager manager) {
 		this.manager = manager;
 		
 		Textures.get().add("test", "res/images/test/test.png");
@@ -56,17 +56,6 @@ public class GameState implements State{
 	}
 
 	public void render() {
-		
-		/*timer++;
-		if(timer >= 10) {
-			timer = 0;
-			if(fx < 4) {
-				fx++;
-			}else {
-				fx = 0;
-			}
-		}
-		test.render(fx, 3);*/
 		layer.render();
 		test.render();
 	}

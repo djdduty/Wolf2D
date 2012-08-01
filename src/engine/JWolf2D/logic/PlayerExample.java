@@ -9,7 +9,7 @@ import engine.JWolf2D.resource.Textures;
 public class PlayerExample extends Entity{
 	private int xMoveSpeed, timer = 0, fx = 0, row=0;
 	private AnimatedSprite aSprite;
-	
+	private String dir = "right";
 	public PlayerExample(Vector2 pos, String textureName, Layer l) {
 		super(pos, textureName, l);
 		Textures.get().add("player", "res/images/test/Aliens.png");
@@ -23,12 +23,14 @@ public class PlayerExample extends Entity{
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			xMoveSpeed = -4;
-			row=1;
+			row=3;
+			dir = "left";
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			xMoveSpeed = 4;
 			row=3;
+			dir = "right";
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W) && jumping == false) {
@@ -41,7 +43,7 @@ public class PlayerExample extends Entity{
 	
 	public void render() {
 		timer++;
-		if(timer >= 5) {
+		if(timer >= 10) {
 			timer = 0;
 			if(fx < 4) {
 				fx++;
@@ -49,6 +51,6 @@ public class PlayerExample extends Entity{
 				fx = 0;
 			}
 		}
-		aSprite.render(fx, row);
+		aSprite.render(fx, row, dir);
 	}
 }
