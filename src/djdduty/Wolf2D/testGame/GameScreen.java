@@ -7,20 +7,20 @@ import engine.JWolf2D.logic.GameObject;
 import engine.JWolf2D.logic.PlayerExample;
 import engine.JWolf2D.resource.Textures;
 
-import engine.JWolf2D.core.Screen;
-import engine.JWolf2D.core.ScreenManager;
+import engine.JWolf2D.core.State;
+import engine.JWolf2D.core.StateManager;
 
-public class GameScreen implements Screen{
-	private ScreenManager manager;
+public class GameState implements State{
+	private StateManager manager;
 	private PlayerExample test;
 	private int timer=0, fx;
 	private Layer layer;
 	
-	public GameScreen() {
+	public GameState() {
 	
 	}
 	
-	public void init(ScreenManager manager) {
+	public void init(StateManager manager) {
 		this.manager = manager;
 		
 		Textures.get().add("test", "res/images/test/test.png");
