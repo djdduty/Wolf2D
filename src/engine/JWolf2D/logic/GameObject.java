@@ -40,6 +40,10 @@ public class GameObject {
 		texture.render();
 	}
 	
+	public Sprite getTexture() {
+		return texture;
+	}
+	
 	public Vector2 getSize() {
 		return size;
 	}
