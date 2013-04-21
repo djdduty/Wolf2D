@@ -7,6 +7,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import engine.JWolf2D.resource.Textures;
+
 public class Game {
 	private ScreenManager manager;
 	
@@ -67,6 +69,7 @@ public class Game {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		try {
+			Textures.get().add("nulltex", "res/images/textures/nulltex.png");
 			manager.init(this);
 			
 			long lastTime = System.currentTimeMillis();
@@ -83,7 +86,7 @@ public class Game {
 				
 				long deltaTime = System.currentTimeMillis()-lastTime;
 				lastTime += System.currentTimeMillis()-lastTime;
-				
+					
 				manager.update(deltaTime);
 				//System.out.println(deltaTime);
 				manager.render();

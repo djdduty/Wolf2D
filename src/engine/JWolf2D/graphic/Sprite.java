@@ -65,7 +65,10 @@ public class Sprite {
 		texture = Textures.get().get(name);
 		
 		if(texture == null)
-			throw new NullPointerException("Texture not found.");
+			texture = Textures.get().get("nulltex");
+		
+		if(texture == null)//somehow still null
+			throw new NullPointerException(name + " sprite and nulltex sprite are somehow missing");
 	}
 	
 	public String getTextureName() {

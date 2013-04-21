@@ -11,31 +11,36 @@ public class PlayerExample extends Entity{
 	private int timer = 0, fx = 0, row=0;
 	private AnimatedSprite aSprite;
 	private String dir = "right";
+	private boolean idle;
+	
 	public PlayerExample(Vector2 pos, String textureName, Layer l) {
 		super(pos, textureName, l);
 		Textures.get().add("player", "res/images/test/Aliens.png");
-		aSprite = new AnimatedSprite(textureName, 32, 32, pos);
+		aSprite = new AnimatedSprite(textureName, 32, 30, pos);
 		size = new Vector2(32, 32);
 	}
 
 	public void update(long deltaTime) {
 		xMoveSpeed = 0;
 		row=0;
+		idle = true;
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			xMoveSpeed = -200.0f*(deltaTime/1000.0f);
-			row=3;
+			row=1;
 			dir = "left";
+			idle = false;
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			xMoveSpeed = 200.0f*(deltaTime/1000.0f);
-			row=3;
+			row=1;
 			dir = "right";
+			idle = false;
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W) && jumping == false) {
-			yVelocity = -7;
+			yVelocity = -8;
 		}
 		
 		addVelocity(xMoveSpeed, 0);
@@ -46,7 +51,7 @@ public class PlayerExample extends Entity{
 		timer++;
 		if(timer >= 10) {
 			timer = 0;
-			if(fx < 4) {
+			if(fx < 4 && idle == false) {
 				fx++;
 			}else {
 				fx = 0;

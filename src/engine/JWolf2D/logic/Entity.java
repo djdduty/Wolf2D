@@ -37,6 +37,8 @@ public class Entity {
 	
 	protected void checkCollision() {
 		float oldX = pos.x;
+		float oldY = pos.y;
+		
 		pos.x += xVelocity;
 		if(layer.collidesWithObjects(new Rectangle2(pos, size))) {
 			pos.x = oldX;
@@ -44,9 +46,11 @@ public class Entity {
 		xVelocity = 0;
 		pos.y += yVelocity;
 		if(layer.collidesWithObjects(new Rectangle2(pos, size))) {
-			//pos.y = oldY;
-			pos.y = layer.getCollidesWithObject(new Rectangle2(pos, size)).getPos().y-(size.y);
-			jumping = false;
+			if(layer.collidesWithObjects(new Rectangle2(new Vector2(pos.x+6, pos.y+12), new Vector2(size.x-12, size.y-10)))) {
+				jumping = false;
+				oldY = layer.getCollidesWithObject(new Rectangle2(pos, size)).getPos().y-(size.y);
+			}
+			pos.y = oldY;
 			yVelocity = 0;
 		}else {
 			jumping = true;
