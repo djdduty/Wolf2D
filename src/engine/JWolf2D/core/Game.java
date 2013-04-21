@@ -69,39 +69,40 @@ public class Game {
 		try {
 			manager.init(this);
 			
-			long lastTime = System.nanoTime();
+			long lastTime = System.currentTimeMillis();
 			int frames = 0;
-			long lastSecond = System.nanoTime();
+			long lastSecond = System.currentTimeMillis();
 			
 			while (!Display.isCloseRequested()) {
-				long now = System.nanoTime();
+				long now = System.currentTimeMillis();
 				
 				glClear(GL_COLOR_BUFFER_BIT);
 				
 				if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 					break;
 				
-				long deltaTime = System.nanoTime()-lastTime;
-				lastTime += 1e9/60.0;
+				long deltaTime = System.currentTimeMillis()-lastTime;
+				lastTime += System.currentTimeMillis()-lastTime;
 				
 				manager.update(deltaTime);
+				//System.out.println(deltaTime);
 				manager.render();
 				
 				Display.update();
 				
 				frames++;
 				
-				if(System.nanoTime()-lastSecond >= 1e9) {
+				if(System.currentTimeMillis()-lastSecond >= 1e3) {
 					System.out.println(frames);
 					frames = 0;
-					lastSecond += 1e9;
+					lastSecond += 1e3;
 				}
 				
-				long sleepTime = (int)Math.round(1e9/60.0 - (System.nanoTime() - now));
+				long sleepTime = (int)Math.round(1e3/60.0 - (System.currentTimeMillis() - now));
 				if(sleepTime > 0) {
-					long time = System.nanoTime();
+					long time = System.currentTimeMillis();
 					long timePassed;
-					while((timePassed = System.nanoTime() - time) < sleepTime) {
+					while((timePassed = System.currentTimeMillis() - time) < sleepTime) {
 						if(timePassed < sleepTime * 0.8)
 							try{
 								Thread.sleep(1);

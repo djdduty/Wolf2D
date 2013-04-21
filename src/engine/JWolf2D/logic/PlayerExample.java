@@ -7,7 +7,8 @@ import engine.JWolf2D.level.Layer;
 import engine.JWolf2D.resource.Textures;
 
 public class PlayerExample extends Entity{
-	private int xMoveSpeed, timer = 0, fx = 0, row=0;
+	private float xMoveSpeed;
+	private int timer = 0, fx = 0, row=0;
 	private AnimatedSprite aSprite;
 	private String dir = "right";
 	public PlayerExample(Vector2 pos, String textureName, Layer l) {
@@ -22,13 +23,13 @@ public class PlayerExample extends Entity{
 		row=0;
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			xMoveSpeed = -4;
+			xMoveSpeed = -200.0f*(deltaTime/1000.0f);
 			row=3;
 			dir = "left";
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			xMoveSpeed = 4;
+			xMoveSpeed = 200.0f*(deltaTime/1000.0f);
 			row=3;
 			dir = "right";
 		}

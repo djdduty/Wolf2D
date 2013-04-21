@@ -56,8 +56,8 @@ public class Entity {
 		}
 	}
 	
-	public void addVelocity(int xAmount, int yAmount) {
-		xVelocity += xAmount;
+	public void addVelocity(float xMoveSpeed, float yAmount) {
+		xVelocity += xMoveSpeed;
 		yVelocity += yAmount;
 	}
 	
