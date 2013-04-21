@@ -7,8 +7,8 @@ import engine.JWolf2D.logic.GameObject;
 import engine.JWolf2D.util.Bag;
 
 public class Layer {
-	private Bag<Entity> entities;
-	private Bag<GameObject> objects;
+	public Bag<Entity> entities;
+	public Bag<GameObject> objects;
 	private String name;
 	
 	public Layer(String name) {
