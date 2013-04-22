@@ -31,10 +31,13 @@ public class Clickable {
 	}
 	
 	public boolean clicked() {
-		if(down = true)
-			return true;
-		else
-			return false;
+		boolean temp = down;
+		down = false;
+		return temp;
+	}
+	
+	public void setDown(boolean down) {
+		this.down = down;
 	}
 	
 	public void render() {

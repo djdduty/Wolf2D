@@ -11,6 +11,7 @@ import engine.JWolf2D.resource.Textures;
 
 public class Game {
 	private ScreenManager manager;
+	private boolean isCloseRequested = false;
 	
 	static {
 		if(System.getProperty("os.name").startsWith("Win")) {
@@ -77,7 +78,7 @@ public class Game {
 			int frames = 0;
 			long lastSecond = System.currentTimeMillis();
 			
-			while (!Display.isCloseRequested()) {
+			while (!Display.isCloseRequested() && !isCloseRequested) {
 				long now = System.currentTimeMillis();
 				
 				glClear(GL_COLOR_BUFFER_BIT);
@@ -124,6 +125,10 @@ public class Game {
 		finally {
 			Display.destroy();
 		}
+	}
+
+	public void requestClose() {
+		isCloseRequested = true;
 	}
 }
 

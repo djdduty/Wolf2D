@@ -10,7 +10,7 @@ public class GuiManager {
 	private Font font;
 
 	public GuiManager(String fontPath) {
-		font = new Font(Textures.get().add("font", fontPath),18,30,new String[] {"ABCDEFGHIJKLMNOPQRSTUVWXYZ","0123456789:;,.-'()!\"@$?_~*/\\+"});
+		font = new Font(Textures.get().add("font", fontPath),32,32,new String[] {"ABCDEFGHIJKLMNOPQRSTUVWXYZ","0123456789:;,.-'()!\"@$?_~*/\\+"});
 		labels = new Bag<Label>();
 		buttons = new Bag<Button>();
 		checkboxes = new Bag<CheckBox>();
