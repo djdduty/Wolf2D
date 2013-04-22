@@ -24,7 +24,7 @@ public class Vector2
 		y = (float) vy;
 	}
 	
-	Vector2(double vx, double vy)
+	public Vector2(double vx, double vy)
 	{
 		x = (float) vx;
 		y = (float) vy;

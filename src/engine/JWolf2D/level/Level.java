@@ -8,6 +8,8 @@ import java.util.List;
 
 import engine.JWolf2D.geom.Vector2;
 import engine.JWolf2D.logic.GameObject;
+import engine.JWolf2D.logic.Player;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -18,10 +20,19 @@ public class Level {
 	private ArrayList<Layer> layers;
 	private String name;
 	private Layer mainLayer;
+	private Player player;
 	
 	public Level(String name) {
 	this.name = name;	
 	layers = new ArrayList<Layer>();
+	}
+	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 	
 	public void save() {
@@ -61,7 +72,7 @@ public class Level {
 
 			for (int i = 0; i < layerList.size(); i++) {
 			   Element node = (Element) layerList.get(i);
-			   Layer l = new Layer(String.valueOf(node.getAttributeValue("name")));
+			   Layer l = new Layer(String.valueOf(node.getAttributeValue("name")), this);
 			   addLayer(l);
 			   if(l.getName().equals("main")){setMainLayer(l); System.out.println("Found the main Layer");}
 			   List objectList = node.getChildren("gameObject");
@@ -100,7 +111,6 @@ public class Level {
 	public void update(long deltaTime) {
 		for(Layer l : layers) {
 			l.update(deltaTime);
-			System.out.println(l.getName());
 		}
 	}
 	

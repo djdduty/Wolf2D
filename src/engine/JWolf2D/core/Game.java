@@ -34,6 +34,7 @@ public class Game {
 	
 	public Game(Screen initialScreen) {
 		manager = new ScreenManager(initialScreen);
+		Display.setInitialBackground(0, 222, 255);
 	}
 	
 	public void setTitle(String title) {

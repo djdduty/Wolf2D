@@ -2,30 +2,34 @@ package engine.JWolf2D.level;
 
 
 import engine.JWolf2D.geom.Rectangle2;
-import engine.JWolf2D.logic.Entity;
+import engine.JWolf2D.logic.PlayerBase;
 import engine.JWolf2D.logic.GameObject;
 import engine.JWolf2D.util.Bag;
 
 public class Layer {
-	public Bag<Entity> entities;
+	public Bag<PlayerBase> entities;
 	public Bag<GameObject> objects;
 	private String name;
+	private float gravity;
+	private Level level;
 	
-	public Layer(String name) {
+	public Layer(String name, Level level) {
+		this.level = level;
 		this.name = name;
-		entities = new Bag<Entity>();
+		entities = new Bag<PlayerBase>();
 		objects = new Bag<GameObject>();
+		gravity = 0.5f;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public void addEntity(Entity e) {
+	public void addEntity(PlayerBase e) {
 		entities.add(e);
 	}
 	
-	public boolean removeEntity(Entity e) {
+	public boolean removeEntity(PlayerBase e) {
 		return entities.remove(e);
 	}
 	
@@ -38,7 +42,7 @@ public class Layer {
 	}
 	
 	public void update(long deltaTime) {
-		for(Entity e : entities) {
+		for(PlayerBase e : entities) {
 			e.update(deltaTime);
 		}
 		for(GameObject o : objects) {
@@ -47,7 +51,7 @@ public class Layer {
 	}
 	
 	public void render() {
-		for(Entity e : entities) {
+		for(PlayerBase e : entities) {
 			e.render();
 		}
 		for(GameObject o : objects) {
@@ -56,7 +60,7 @@ public class Layer {
 	}
 	
 	public boolean collidesWithEntities(Rectangle2 rect) {
-		for(Entity e : entities) {
+		for(PlayerBase e : entities) {
 			if(e.collides(rect)) {
 				return true;
 			}
@@ -71,6 +75,18 @@ public class Layer {
 			}
 		}
 		return false;
+	}
+	
+	public Level getLevel() {
+		return level;
+	}
+	
+	public void setGravity(float g) {
+		gravity = g;
+	}
+	
+	public float getGravity() {
+		return gravity;
 	}
 	
 	public GameObject getCollidesWithObject(Rectangle2 rect) {
